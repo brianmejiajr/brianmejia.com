@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0053)file:///Users/brianmejia/Downloads/index_clean_3.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Brian Mejía — Health Plan Data Analyst</title>
 <meta name="description" content="Brian Mejía is a Health Plan Data Analyst with frontline ACA enrollment, claims analytics, and health plan operations experience, currently pursuing an MSc in Digital Healthcare at the Universitat de Barcelona.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="./index_files/css2" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -252,6 +252,70 @@ a { color: inherit; text-decoration: none; }
   top: 0; left: 0; width: 100%; height: 100%;
 }
 
+/* ── AVAILABILITY BANNER ── */
+.avail-banner {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  padding: 0.45rem 1.1rem 0.45rem 0.75rem;
+  border: 1px solid rgba(56,160,138,0.35);
+  background: rgba(56,160,138,0.07);
+  border-radius: 2px;
+  margin-bottom: 2.2rem;
+  opacity: 0; animation: fadeUp 0.7s ease 0.05s forwards;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s;
+}
+.avail-banner:hover { border-color: rgba(56,160,138,0.6); background: rgba(56,160,138,0.12); }
+.avail-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--teal); flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(56,160,138,0.6);
+  animation: sonar 2s ease-in-out infinite;
+}
+@keyframes sonar {
+  0%   { box-shadow: 0 0 0 0   rgba(56,160,138,0.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(56,160,138,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(56,160,138,0);   }
+}
+.avail-text {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--teal); font-weight: 500;
+}
+.avail-text em { font-style: normal; color: var(--sub); font-weight: 400; }
+
+/* Floating pill — visible on all pages except home */
+#avail-pill {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  display: none;
+  align-items: center; gap: 0.55rem;
+  padding: 0.5rem 1rem 0.5rem 0.75rem;
+  background: var(--surface); border: 1px solid rgba(56,160,138,0.4);
+  border-radius: 999px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(56,160,138,0.08);
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.2s;
+}
+#avail-pill.visible { opacity: 1; transform: translateY(0); display: flex; }
+#avail-pill:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 16px rgba(56,160,138,0.15); border-color: rgba(56,160,138,0.65); }
+#avail-pill .avail-dot { width: 6px; height: 6px; }
+#avail-pill .pill-text { font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--teal); white-space: nowrap; }
+#avail-pill .pill-arr { font-size: 11px; color: var(--muted); margin-left: 2px; transition: transform 0.2s; }
+#avail-pill:hover .pill-arr { transform: translateX(2px); }
+
+/* Contact page availability callout */
+.contact-avail {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(56,160,138,0.25);
+  background: rgba(56,160,138,0.05);
+  border-left: 3px solid var(--teal);
+  margin-bottom: 2rem;
+}
+.contact-avail-dot { margin-top: 4px; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; animation: sonar 2s ease-in-out infinite; }
+.contact-avail-body {}
+.contact-avail-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.contact-avail-text { font-size: 13px; color: var(--sub); line-height: 1.75; }
+.contact-avail-text strong { color: var(--text); font-weight: 500; }
+
 /* ── BUTTONS ── */
 .btn-teal { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem; background: var(--teal); color: var(--bg); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; transition: background 0.25s, transform 0.25s; cursor: pointer; border: none; }
 .btn-teal:hover { background: #45b89d; transform: translateY(-1px); }
@@ -487,13 +551,13 @@ a { color: inherit; text-decoration: none; }
 </div>
 <div id="mobile-drawer">
   <button class="mobile-close" onclick="toggleDrawer()">✕</button>
-  <div class="mobile-nav-item" onclick="goTo('home');toggleDrawer()">Home</div>
-  <div class="mobile-nav-item" onclick="goTo('about');toggleDrawer()">About Me</div>
-  <div class="mobile-nav-item" onclick="goTo('education');toggleDrawer()">Education</div>
-  <div class="mobile-nav-item" onclick="goTo('experience');toggleDrawer()">Experience</div>
-  <div class="mobile-nav-item" onclick="goTo('expertise');toggleDrawer()">Expertise</div>
-  <div class="mobile-nav-item" onclick="goTo('projects');toggleDrawer()">Selected Projects</div>
-  <div class="mobile-nav-item" onclick="goTo('contact');toggleDrawer()">Contact</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;home&#39;);toggleDrawer()">Home</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;about&#39;);toggleDrawer()">About Me</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;education&#39;);toggleDrawer()">Education</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;experience&#39;);toggleDrawer()">Experience</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;expertise&#39;);toggleDrawer()">Expertise</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;projects&#39;);toggleDrawer()">Selected Projects</div>
+  <div class="mobile-nav-item" onclick="goTo(&#39;contact&#39;);toggleDrawer()">Contact</div>
 </div>
 
 <!-- SIDEBAR -->
@@ -504,40 +568,40 @@ a { color: inherit; text-decoration: none; }
     <div class="sidebar-avail"><span class="nav-dot"></span>Open to new opportunities · Let's connect</div>
   </div>
   <div class="sidebar-nav">
-    <div class="nav-item active" data-page="home" onclick="goTo('home')">
+    <div class="nav-item active" data-page="home" onclick="goTo(&#39;home&#39;)">
       <span class="nav-item-num">—</span>
       <span class="nav-item-label">Home</span>
     </div>
-    <div class="nav-item" data-page="about" onclick="goTo('about')">
+    <div class="nav-item" data-page="about" onclick="goTo(&#39;about&#39;)">
       <span class="nav-item-num">01</span>
       <span class="nav-item-label">About Me</span>
     </div>
-    <div class="nav-item" data-page="education" onclick="goTo('education')">
+    <div class="nav-item" data-page="education" onclick="goTo(&#39;education&#39;)">
       <span class="nav-item-num">02</span>
       <span class="nav-item-label">Education</span>
     </div>
-    <div class="nav-item" data-page="experience" onclick="goTo('experience')">
+    <div class="nav-item" data-page="experience" onclick="goTo(&#39;experience&#39;)">
       <span class="nav-item-num">03</span>
       <span class="nav-item-label">Experience</span>
     </div>
-    <div class="nav-item" data-page="expertise" onclick="goTo('expertise')">
+    <div class="nav-item" data-page="expertise" onclick="goTo(&#39;expertise&#39;)">
       <span class="nav-item-num">04</span>
       <span class="nav-item-label">Expertise</span>
     </div>
-    <div class="nav-item" data-page="projects" onclick="goTo('projects')">
+    <div class="nav-item" data-page="projects" onclick="goTo(&#39;projects&#39;)">
       <span class="nav-item-num">05</span>
       <span class="nav-item-label">Selected Projects</span>
     </div>
-    <div class="nav-item" data-page="awards" onclick="goTo('awards')">
+    <div class="nav-item" data-page="awards" onclick="goTo(&#39;awards&#39;)">
       <span class="nav-item-num">06</span>
       <span class="nav-item-label">Awards</span>
     </div>
-    <div class="nav-item" data-page="contact" onclick="goTo('contact')">
+    <div class="nav-item" data-page="contact" onclick="goTo(&#39;contact&#39;)">
       <span class="nav-item-num">07</span>
       <span class="nav-item-label">Contact</span>
     </div>
   </div>
-  <div class="sidebar-footer">Barcelona · 2026</div>
+  <div class="sidebar-footer">Barcelona · 2026<br><span style="font-size:8px;letter-spacing:0.1em;color:var(--muted);opacity:0.6;">Built in Barcelona</span></div>
 </nav>
 
 <!-- MAIN -->
@@ -556,11 +620,11 @@ a { color: inherit; text-decoration: none; }
             <strong>Healthcare data professional</strong> with hands-on health plan experience — translating ACA enrollment, claims workflows, and compliance data into dashboards, KPIs, and actionable insights that help organizations improve outcomes and operate more efficiently.
           </p>
           <div class="hero-actions">
-            <button class="btn-teal" onclick="goTo('projects')">View Work</button>
+            <button class="btn-teal" onclick="goTo(&#39;projects&#39;)">View Work</button>
             <button class="btn-outline" id="hero-cv-btn">↓ Download CV</button>
-            <button class="btn-ghost" onclick="goTo('contact')">Contact <span class="arr">→</span></button>
+            <button class="btn-ghost" onclick="goTo(&#39;contact&#39;)">Contact <span class="arr">→</span></button>
           </div>
-          <div class="hero-loc">United States &nbsp;/&nbsp; Barcelona, Spain</div>
+          <div class="hero-loc">Barcelona, Spain</div>
         </div>
       </div>
       <div class="hero-right">
@@ -575,7 +639,7 @@ a { color: inherit; text-decoration: none; }
   <div class="page" id="page-about">
     <div class="page-inner">
       <div class="page-eyebrow">01 — About Me</div>
-      <h1 class="page-title">The data <em>professional</em><br>behind the work</h1>
+      <h1 class="page-title"><em>Introduction</em></h1>
       <div class="page-rule"></div>
       <div class="about-layout">
         <div class="about-sidebar">
@@ -800,6 +864,19 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div class="proj-meta"><div class="proj-yr">2026</div><span class="proj-badge ongoing">Ongoing</span></div>
         </div>
+
+        <div class="proj">
+          <div class="proj-n">04</div>
+          <div>
+            <h3 class="proj-name">Medicare Advantage Plan Comparison Dashboard</h3>
+            <p class="proj-desc">Interactive analytics dashboard comparing 2024 Medicare Advantage plans across 5 states and 25 counties — covering CMS star ratings, monthly premiums, out-of-pocket maximums, and supplemental benefits. Built a weighted scoring algorithm that automatically surfaces the Best Overall, Best Value, Lowest OOP, and Top Rated plan for any filtered market. Features a full-width value-quadrant scatter analysis and real-time filtering by state, county, plan type, and star rating — backed by KFF, CMS, and JAMA-sourced national benchmarks.</p>
+            <div class="proj-tags">
+              <span class="ptag">CMS Star Ratings</span><span class="ptag">Medicare Advantage</span><span class="ptag">Scoring Algorithm</span><span class="ptag">KFF Data</span><span class="ptag">Chart.js</span><span class="ptag">HTML / CSS / JS</span>
+            </div>
+          </div>
+          <div class="proj-meta"><div class="proj-yr">2024–2025</div><span class="proj-badge live">Live</span></div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -822,7 +899,7 @@ a { color: inherit; text-decoration: none; }
           </div>
           <h3 class="award-name">Elite Plus Circle of Champions</h3>
           <p class="award-desc">Awarded to the top-performing Marketplace agents and brokers in America. Earned by helping at least 500 consumers enroll in ACA Marketplace coverage — placing among an elite tier of agents nationally recognized by HealthCare.gov for exceptional enrollment impact.</p>
-          <button class="award-dl-btn" onclick="downloadAward('coc')">↓ View Certificate</button>
+          <button class="award-dl-btn" onclick="downloadAward(&#39;coc&#39;)">↓ View Certificate</button>
         </div>
 
         <div class="award-card">
@@ -833,7 +910,7 @@ a { color: inherit; text-decoration: none; }
           </div>
           <h3 class="award-name">Connecting Consumers with Coverage Award</h3>
           <p class="award-desc">Issued by the Director of CCIIO for helping consumers transition from Medicaid and CHIP coverage to the Health Insurance Marketplace between February 2023 and July 2024 — during the largest insurance unwinding event in U.S. history following the end of continuous Medicaid enrollment.</p>
-          <button class="award-dl-btn" onclick="downloadAward('ccc')">↓ View Certificate</button>
+          <button class="award-dl-btn" onclick="downloadAward(&#39;ccc&#39;)">↓ View Certificate</button>
         </div>
 
       </div>
@@ -848,6 +925,13 @@ a { color: inherit; text-decoration: none; }
       <div class="page-rule"></div>
       <div class="contact-layout">
         <div>
+          <div class="contact-avail">
+            <div class="contact-avail-dot"></div>
+            <div class="contact-avail-body">
+              <div class="contact-avail-label">Currently available</div>
+              <p class="contact-avail-text"><strong>Open to new opportunities</strong> in healthcare data, health plan analytics, and digital health — full-time, contract, or consulting. Based between the US and Barcelona.</p>
+            </div>
+          </div>
           <p class="contact-intro">
             Always happy to connect — whether you're working on something in healthcare, data, or digital health, or just want to chat.
           </p>
@@ -856,8 +940,8 @@ a { color: inherit; text-decoration: none; }
         </div>
         <div>
           <div class="clinks">
-            <a href="/cdn-cgi/l/email-protection#afcdddc6cec1c1cacec3c2cac5c6ceefdfddc0dbc0c181c2ca" class="clink">
-              <div><div class="clink-k">Email</div><div class="clink-v">briannealmejia@proton.me</div></div>
+            <a href="mailto:brian@brianmejia.com" class="clink">
+              <div><div class="clink-k">Email</div><div class="clink-v">brian@brianmejia.com</div></div>
               <span class="clink-arr">→</span>
             </a>
             <a href="https://www.linkedin.com/in/jrmejiabrian/" target="_blank" class="clink">
@@ -891,7 +975,6 @@ function goTo(id) {
     old.classList.remove('active', 'exit');
     next.classList.add('active');
     next.scrollTop = 0;
-    // trigger globe resize if needed
     if (id === 'about') { setTimeout(resizeAboutGlobe, 80); }
   }, 200);
 
@@ -1120,16 +1203,4 @@ function downloadAward(key) {
     const arr = new Uint8Array(bytes.length);
     for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
     const blob = new Blob([arr], {type: 'application/pdf'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'Brian Mejia CV.pdf';
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  }
-  document.getElementById('cv-dl-link').addEventListener('click', doDownload);
-  document.getElementById('hero-cv-btn').addEventListener('click', doDownload);
-})();
-</script>
-</body>
-</html>
+    const url = </script></body></html>
